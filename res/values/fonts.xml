@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="font_bradbunr">BradBunR</string>
+    <string name="font_infinite">Infinite</string>
+    <string name="font_jfringmaster">JFRingmaster</string>
+    <string name="font_jfrocsol">JFRocSol</string>
+
+    <string-array name="fonts_names">
+        <item>@string/font_bradbunr</item>
+        <item>@string/font_infinite</item>
+        <item>@string/font_jfringmaster</item>
+        <item>@string/font_jfrocsol</item>
+    </string-array>
+
+</resources>
