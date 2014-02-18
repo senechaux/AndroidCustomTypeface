@@ -153,3 +153,8 @@ Los archivos de las fuentes deben estar siempre en la carpeta "assets" y dentro 
 >>>    JFRingmaster.ttf
 
 >>>    JFRocSol.ttf
+
+Y listo! ya podemos definir nuestras fuentes personalizadas en el layout sin ningún tipo de posibilidad de equivocarnos en el nombre de la misma ya que el IDE autocompleta los strings (@string/font_name).
+Además para añadir una fuente nueva tan solo hay que añadir el archivo .ttf y añadir su nombre en **values/fonts.xml**.
+
+Cualquier mejora será bienvenida!
