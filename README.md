@@ -5,8 +5,9 @@ Aquí presento mi mejor aproximación para definir una fuente personalizada en l
 
 Crear una custom View para cada elemento que quieras tener con fuente personalizada TextView, Button, ...
 
+```java
 public class CustomTextView extends TextView {
-	public CustomTextView(Context context) {
+    public CustomTextView(Context context) {
 		super(context);
 	}
 
@@ -31,19 +32,20 @@ public class CustomTextView extends TextView {
 			setTypeface(tf);
 		}
 	}
-
 }
+```
 
 Añadir en el archivo values/attrs.xml la definición de esta clase para que Android sepa que es una custom view personalizable:
-
+```xml
     <attr name="typeface" format="string" />
 
     <declare-styleable name="CustomTextView">
         <attr name="typeface" />
     </declare-styleable>
-    
-Con esto ya podemos añadir la custom view a nuestro layout:
+```
 
+Con esto ya podemos añadir la custom view a nuestro layout:
+```xml
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     xmlns:custom="http://schemas.android.com/apk/res/com.senechaux.androidcustomtypeface"
@@ -59,15 +61,21 @@ Con esto ya podemos añadir la custom view a nuestro layout:
         custom:typeface="@string/font_infinite" />
 
 </LinearLayout>
+```
 
 No hay que olvidarse de añadir el namespace de nuestra aplicación en el elemento raíz: 
+```xml
 xmlns:custom="http://schemas.android.com/apk/res/com.senechaux.androidcustomtypeface"
+```
 
-Y ya podemos indicar al CustomTextView el atributo "custom:typeface":
+Y ya podemos indicar al CustomTextView el atributo **custom:typeface**:
+```xml
 <com.senechaux.androidcustomtypeface.CustomTextView
         custom:typeface="@string/font_infinite" />
+```
 
-En este atributo debe ir el nombre de la fuente pero para centralizar los nombres de las fuentes y evitar errores al escribir creamos un archivo de strings en values/fonts.xml:
+En este atributo debe ir el nombre de la fuente pero para centralizar los nombres de las fuentes y evitar errores al escribir creamos un archivo de strings en **values/fonts.xml**:
+```xml
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
@@ -84,11 +92,13 @@ En este atributo debe ir el nombre de la fuente pero para centralizar los nombre
     </string-array>
 
 </resources>
+```
 
 Primero definimos los strings con el nombre que queramos para cada fuente en nuestra aplicación en al atributo "name" y como valor del string el nombre del archivo de la fuente sin la extensión pero respetando las mayúsculas del nombre de archivo.
 A continuación escribimos un string-array con los nombres que hemos dado nosotros a las fuentes, esto sirve para que la clase encargada de crear los typefaces sepa los nombres de todas las fuentes.
 
 Por último necesitamos una clase Singleton para crear las fuentes una sola vez durante el ciclo de vida de la aplicación ya que en versiones anteriores a Android 4.0 si no se hace esto se crearía el typeface cada vez que se usa la fuente disparando el consumo de memoria.
+```java
 public class CustomTypeface {
 	private static CustomTypeface mInstance = null;
 	private Context context;
@@ -130,12 +140,16 @@ public class CustomTypeface {
 	}
 
 }
+```
 
 Los archivos de las fuentes deben estar siempre en la carpeta "assets" y dentro de una subcarpeta llamada "fonts", además la extensión debe ser siempre ".ttf" en minúsculas. Por ejemplo:
-assets/
-  fonts/
-    BradBunR.ttf
-    Infinite.ttf
-    JFRingmaster.ttf
-    JFRocSol.ttf
-    
+
+>assets/
+>>  fonts/
+>>>    BradBunR.ttf
+
+>>>    Infinite.ttf
+
+>>>    JFRingmaster.ttf
+
+>>>    JFRocSol.ttf
